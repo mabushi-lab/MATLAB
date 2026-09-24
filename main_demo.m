@@ -52,4 +52,9 @@ title('TSLA: strategy vs buy & hold (growth of $1)');
 xlabel('Date'); ylabel('Equity');
 grid on;
 
+%% Plot 4: compare all three strategies on TSLA
+comparison = pa.compareAllStrategies('TSLA');
+fprintf('\nStrategy comparison on TSLA:\n');
+disp(comparison);
+
 fprintf('\nDone. Try: app = MarketLensApp;  (needs real MATLAB, not Octave)\n');

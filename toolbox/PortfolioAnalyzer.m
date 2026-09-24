@@ -64,8 +64,49 @@ classdef PortfolioAnalyzer < handle
 
         function result = backtest(obj, ticker, fastWindow, slowWindow)
             % Run the SMA-crossover backtest on a single ticker by name.
+            % (Kept as "backtest" — the original name — for backward
+            % compatibility; identical to backtestSMA below.)
+            result = obj.backtestSMA(ticker, fastWindow, slowWindow);
+        end
+
+        function result = backtestSMA(obj, ticker, fastWindow, slowWindow)
+            % SMA-crossover backtest on a single ticker by name.
             col = obj.tickerIndex(ticker);
             result = backtestSMACrossover(obj.Prices(:, col), fastWindow, slowWindow);
+        end
+
+        function result = backtestRSIStrategy(obj, ticker, rsiWindow, oversold, overbought)
+            % RSI mean-reversion backtest on a single ticker by name.
+            % Named "...Strategy" (not just "backtestRSI") on purpose:
+            % a class method can't share its own file's global function
+            % name — obj.backtestRSI calling an unqualified backtestRSI(...)
+            % inside itself would recurse into itself, not call
+            % toolbox/backtestRSI.m. Same reasoning for
+            % backtestBollingerStrategy below.
+            if nargin < 3, rsiWindow = 14; end
+            if nargin < 4, oversold = 30; end
+            if nargin < 5, overbought = 70; end
+            col = obj.tickerIndex(ticker);
+            result = backtestRSI(obj.Prices(:, col), rsiWindow, oversold, overbought);
+        end
+
+        function result = backtestBollingerStrategy(obj, ticker, windowSize, numStd)
+            % Bollinger Bands mean-reversion backtest on a single ticker.
+            if nargin < 3, windowSize = 20; end
+            if nargin < 4, numStd = 2; end
+            col = obj.tickerIndex(ticker);
+            result = backtestBollinger(obj.Prices(:, col), windowSize, numStd);
+        end
+
+        function T = compareAllStrategies(obj, ticker)
+            % Run SMA(10,30), RSI(14,30,70) and Bollinger(20,2) on one
+            % ticker with default parameters, plot them together, and
+            % return the comparison table. See compareStrategies.m.
+            r1 = obj.backtestSMA(ticker, 10, 30);
+            r2 = obj.backtestRSIStrategy(ticker, 14, 30, 70);
+            r3 = obj.backtestBollingerStrategy(ticker, 20, 2);
+            T = compareStrategies({r1, r2, r3}, ...
+                {'SMA 10/30', 'RSI 14', 'Bollinger 20/2'}, obj.Dates);
         end
 
         function plotEquityCurves(obj)

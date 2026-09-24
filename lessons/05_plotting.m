@@ -53,3 +53,11 @@ subplot(1,3,3); histogram(randn(1,1000), 30); title('histogram');
 
 %% Closing figures programmatically
 % close all;   % uncomment if running this whole script headlessly
+
+%% Try it yourself
+% 1. Plot y = x.^2 and y = x.^3 on the SAME axes for x in [-5, 5], with
+%    a legend and grid.
+% 2. Build a 2x2 subplot showing sin, cos, tan, and exp, all over the
+%    same x range, each with its own title.
+% 3. Save one of your figures to a PNG using exportgraphics — then
+%    check the file actually landed where you expected.

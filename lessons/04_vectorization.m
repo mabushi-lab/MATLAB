@@ -65,3 +65,15 @@ disp(M_centered)
 % whether movmean/movstd/diff/cumprod/cumsum/filter already expresses it
 % over the whole vector at once. The toolbox functions in ../toolbox/
 % are deliberately written this way.
+
+%% Try it yourself
+% 1. Given x = rand(1, 100000), write BOTH a loop and a vectorized
+%    version that clips every negative-after-subtracting-0.5 value to
+%    zero (i.e. y = max(x - 0.5, 0)). Time both with tic/toc and report
+%    the speedup.
+% 2. Use arrayfun to compute the cube of every integer from 1 to 10
+%    without writing a for loop.
+% 3. (Stretch) Given two vectors of x and y coordinates for a handful of
+%    points, compute the full pairwise distance matrix between them
+%    using broadcasting (no loops) — look up how subtracting a column
+%    vector from a row vector broadcasts into a matrix.
