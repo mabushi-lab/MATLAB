@@ -1,5 +1,7 @@
 # MarketLens — Learn MATLAB by Building a Time-Series/Portfolio Toolbox
 
+[![DOI](https://zenodo.org/badge/1384210152.svg)](https://doi.org/10.5281/zenodo.22938776)
+
 A self-contained MATLAB project for going from "comfortable in other
 languages" to comfortable in MATLAB, by building something real: a small
 toolbox that loads price data, computes returns/volatility/drawdown,
