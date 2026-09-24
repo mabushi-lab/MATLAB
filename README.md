@@ -56,10 +56,16 @@ You don't need any paid toolboxes — everything here uses core MATLAB.
      object-oriented interface (the payoff for lesson 7); has one method
      per strategy plus `compareAllStrategies(ticker)`
 
+   `toolbox/Contents.m` follows MATLAB's standard convention, so once the
+   folder's on the path, `help toolbox` prints the one-line summary of
+   every function above.
+
 3. **`tests/`** — a real `matlab.unittest` suite covering every function
-   above except `PortfolioAnalyzer`/`compareStrategies` (those need
-   `table`, which — like the tests themselves — needs real MATLAB to
-   run). Run the whole suite from the project root:
+   in `toolbox/`, including `PortfolioAnalyzer` and `compareStrategies`
+   (those two need `table`, so — like all the test files — they need
+   real MATLAB to run; they were written but only verified by manual
+   review, not by execution, so run them for real once you're in
+   MATLAB). Run the whole suite from the project root:
    ```matlab
    results = runtests('tests');
    table(results)
@@ -69,6 +75,17 @@ You don't need any paid toolboxes — everything here uses core MATLAB.
    early version tried to write `NaN` into a `logical` array, which
    MATLAB rejects. See lesson 9 for why the error identifier pattern
    used everywhere in `toolbox/` makes bugs like that easy to pin down.
+
+   `TestPortfolioAnalyzer.m` and `TestCompareStrategies.m` test by
+   comparison rather than by hand-computed numbers: they check that
+   going through the object/table-building code gives exactly the same
+   result as calling the underlying function directly on the same data
+   — i.e. they catch wiring bugs (wrong column, arguments swapped, a
+   stale default), not re-derive math already covered elsewhere.
+
+   `.github/workflows/tests.yml` runs this suite automatically on every
+   push/PR if you put the project on GitHub — see **Continuous
+   integration** below.
 
 4. **`data/sample_prices.csv`** — synthetic daily closing prices for 4
    tickers (AAPL, MSFT, TSLA, SPY-style index), generated with a
@@ -115,6 +132,25 @@ ignores `*.asv` autosave files, generated `.mat`/`.png` output, and
 MATLAB Project sandbox state — keep `resources/project/` itself, just
 not `resources/project/Sandbox/`).
 
+## Continuous integration
+
+`.github/workflows/tests.yml` runs the whole `tests/` suite automatically
+on every push and pull request, using MathWorks' own `matlab-actions`
+(`setup-matlab` + `run-tests`), and uploads a JUnit XML report as a build
+artifact. This works out of the box, free, **only on a public GitHub
+repo** — MathWorks applies a temporary batch license automatically for
+`matlab-actions` on public repos, no license file needed on your end. If
+you make the repo private, this workflow will fail at the "Set up
+MATLAB" step; you'd then need either a self-hosted runner with MATLAB
+already installed, or your own CI-licensed MATLAB (see the comments at
+the top of the workflow file, and MathWorks' `matlab-actions` docs, for
+details).
+
+## License
+
+MIT — see `LICENSE`. Use, modify, and share this freely; change the
+copyright name in `LICENSE` if you fork it under your own identity.
+
 ## Why this project
 
 Everything here is generic time-series/matrix work — the same functions
@@ -133,9 +169,8 @@ math throughout).
   three, with its own `tests/Test*.m` file written *before* the
   implementation (try writing the test first for once — it's a
   different way of thinking about the function's contract).
-- Add tests for `PortfolioAnalyzer` and `compareStrategies` — you'll
-  need to build a small in-memory `table` as test fixture data instead
-  of loading the CSV, which is its own useful exercise.
 - Wire `app/MarketLensApp.m`'s "Compare all tickers" view up to
   `compareAllStrategies` — let the user pick a strategy from a dropdown
   and see it backtested live on whichever ticker is selected.
+- Push this to a public GitHub repo and watch `.github/workflows/tests.yml`
+  run the suite for you on every commit.
