@@ -1,0 +1,31 @@
+# MATLAB autosave / editor backups
+*.asv
+*.m~
+
+# MATLAB Simulink / Coder generated
+slprj/
+codegen/
+*.slxc
+
+# MATLAB Project sandbox / cached metadata
+resources/project/Sandbox/
+*.mlappinstall.cache
+
+# Figures/exports you regenerate rather than commit
+# (nothing in this project ships a PNG as source, so these are safe to
+# ignore; delete this section if you later add doc images you DO want
+# committed, e.g. under a docs/ or assets/ folder)
+*.png
+*.fig
+
+# .mat files are usually generated data, not source — comment this out
+# if you actually want to version-control a specific one:
+*.mat
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+*.swp

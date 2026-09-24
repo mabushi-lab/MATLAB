@@ -83,6 +83,17 @@ end
 % specific identifier and a message that says exactly what was wrong
 % and what was expected.
 
+%% Try it yourself
+% 1. Pick a toolbox function that doesn't currently validate one of its
+%    inputs (e.g. what happens if you pass a negative window size to
+%    rollingVolatility?) and add an identifier-based error() call for it.
+% 2. Write a function that uses onCleanup to always print "done",
+%    whether or not an error occurs inside it — test it once with an
+%    error and once without.
+% 3. Write a try/catch that catches ONE specific error identifier and
+%    handles it, but rethrows anything else — then trigger both an
+%    expected and an unexpected error to prove both paths work.
+
 %% --- local functions below this point ---
 
 function result = safeDivide(a, b)

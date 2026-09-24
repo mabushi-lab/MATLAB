@@ -14,8 +14,9 @@ function result = backtestRSI(prices, rsiWindow, oversold, overbought)
 %   (here, none — there's no way around visiting each day in order)
 %   only when there's a genuine sequential dependency like this one.
 %
-%   RESULT has the same fields as backtestSMACrossover's output, so it
-%   can be passed straight into compareStrategies.
+%   RESULT has the same fields as backtestSMACrossover's output (built
+%   by the shared buildBacktestResult.m), so it can be passed straight
+%   into compareStrategies.
 
     if nargin < 2, rsiWindow = 14; end
     if nargin < 3, oversold = 30; end
@@ -41,23 +42,5 @@ function result = backtestRSI(prices, rsiWindow, oversold, overbought)
         position(t) = inPosition;
     end
 
-    assetReturns = computeReturns(prices);
-    posForReturns = position(2:end);
-    posForReturns(isnan(posForReturns)) = 0;
-    strategyReturns = posForReturns .* assetReturns;
-
-    equityCurve = [1; cumprod(1 + strategyReturns)];
-    buyHoldCurve = [1; cumprod(1 + assetReturns)];
-
-    result.position = position;
-    result.strategyReturns = strategyReturns;
-    result.equityCurve = equityCurve;
-    result.buyHoldCurve = buyHoldCurve;
-
-    result.totalReturn = equityCurve(end) - 1;
-    result.buyHoldTotalReturn = buyHoldCurve(end) - 1;
-    result.sharpe = sharpeRatio(strategyReturns);
-    result.buyHoldSharpe = sharpeRatio(assetReturns);
-    result.maxDrawdown = maxDrawdown(equityCurve);
-    result.buyHoldMaxDrawdown = maxDrawdown(buyHoldCurve);
+    result = buildBacktestResult(prices, position);
 end

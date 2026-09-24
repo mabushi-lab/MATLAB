@@ -73,3 +73,16 @@ end
 %      "did I actually get this right" check this whole project relies
 %      on Octave for, in lieu of having MATLAB here. tests/ is that same
 %      idea, permanent, and runnable by you at any time.
+
+%% Try it yourself
+% 1. Write a new test file (e.g. tests/TestComputeBollingerBandsExtra.m)
+%    that adds ONE more test you think is missing from
+%    TestComputeBollingerBands.m — try to find a real gap.
+% 2. Add a test to tests/TestComputeRSI.m checking what computeRSI does
+%    with an EMPTY price vector. Does it error? Return empty? Decide
+%    whether that behavior is actually correct, and if not, fix
+%    computeRSI.m and write the test to lock in the fix.
+% 3. Run `runtests('tests')` and confirm 100% pass. Then deliberately
+%    break something in toolbox/movingAverage.m (e.g. change a `+` to a
+%    `-`), rerun the tests, and confirm they catch it — that's the
+%    whole point of having them. Fix it back before moving on.

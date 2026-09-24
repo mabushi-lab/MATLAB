@@ -87,3 +87,13 @@ fprintf('Speedup:          %.1fx\n', tGrow / tPrealloc);
 % Don't optimize blind. Profile first, find the actual bottleneck (it's
 % often not where you'd guess), then reach for vectorization,
 % preallocation, or matfile as appropriate to what the profiler shows.
+
+%% Try it yourself
+% 1. Wrap `profile on ... profile off` around a call to main_demo, then
+%    inspect `profile('info')` (or `profile viewer` in real MATLAB) and
+%    note, as a comment, which function used the most time.
+% 2. Take a loop from your OWN code (or from an earlier lesson) and
+%    vectorize it. In real MATLAB, confirm the speedup with timeit
+%    rather than a single tic/toc.
+% 3. Save a large matrix to a .mat file, then use matfile() to load
+%    only a 10x10 corner of it without loading the whole thing.

@@ -16,7 +16,10 @@ You don't need any paid toolboxes — everything here uses core MATLAB.
    MATLAB and run it **section by section** (MATLAB scripts use `%%` to
    mark "cells" — press Ctrl+Enter / Cmd+Enter on a section to run just
    that block and inspect variables in the Workspace pane). Work through
-   them in order, 01 → 11:
+   them in order, 01 through 11. Each one ends with a **"Try it
+   yourself"** section — a few practice problems, no solutions given.
+   Reading the lesson shows you the idiom; doing the exercise is what
+   actually makes it stick. Don't skip these:
 
    | # | Topic |
    |---|-------|
@@ -42,7 +45,11 @@ You don't need any paid toolboxes — everything here uses core MATLAB.
    - `sharpeRatio.m`, `maxDrawdown.m` — risk/return metrics
    - `computeRSI.m`, `computeBollingerBands.m` — indicators
    - `backtestSMACrossover.m`, `backtestRSI.m`, `backtestBollinger.m` —
-     three independent long/flat strategies, same result-struct shape
+     three strategies that each work out their own `position` vector,
+     then hand it to...
+   - `buildBacktestResult.m` — the shared bookkeeping (returns, equity
+     curves, Sharpe, drawdown) all three strategies used to duplicate,
+     factored out into one place
    - `compareStrategies.m` — plot several backtest results together +
      summary table
    - `PortfolioAnalyzer.m` — a class wrapping all of the above into an
@@ -102,6 +109,11 @@ main_demo
 Or better yet, convert the folder into a formal MATLAB **Project**
 (*Home → New → Project → From Folder*) — it sets the path up for you
 automatically every time you open it.
+
+A `.gitignore` is included if you put this under version control (it
+ignores `*.asv` autosave files, generated `.mat`/`.png` output, and
+MATLAB Project sandbox state — keep `resources/project/` itself, just
+not `resources/project/Sandbox/`).
 
 ## Why this project
 

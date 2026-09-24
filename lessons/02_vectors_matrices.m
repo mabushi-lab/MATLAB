@@ -63,3 +63,12 @@ numel(M)     % total element count
 length(M)    % size of the LARGEST dimension (careful with matrices)
 ndims(M)     % number of dimensions
 reshape(1:6, 2, 3)   % reshape 6 elements into a 2x3 matrix
+
+%% Try it yourself
+% 1. Build a 4x4 matrix of the numbers 1-16 with reshape(1:16, 4, 4).
+%    Extract its 2nd column and its last row.
+% 2. Given v = [3 -1 4 -1 5 -9 2 6], use logical indexing to extract
+%    only the negative numbers, then count how many there are.
+% 3. Compute the ELEMENTWISE square of a vector AND the MATRIX square
+%    of a 2x2 matrix (using ^ vs .^). Add a comment explaining, in your
+%    own words, why the two results differ.
