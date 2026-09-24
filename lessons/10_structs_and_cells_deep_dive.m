@@ -86,13 +86,3 @@ fprintf('x=%d y=%d\n', x, y);
 % to a table for display. Re-read compareStrategies.m now — the
 % (r) r.totalReturn anonymous function pulls one field out of each
 % struct in the cell array, all in one line.
-
-%% Try it yourself
-% 1. Build a struct array of 5 "trades" (ticker, quantity, price) and
-%    compute the total dollar value of the portfolio using
-%    [trades.quantity] and [trades.price] (no loop).
-% 2. Convert that struct array to a table with struct2table(), then
-%    back to a struct array with table2struct().
-% 3. Build a config struct that's THREE levels deep (e.g.
-%    config.app.ui.theme) and read the deepest field using a dynamic
-%    field name stored in a variable.

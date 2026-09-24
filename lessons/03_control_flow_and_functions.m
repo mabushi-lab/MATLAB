@@ -55,16 +55,6 @@ fprintf('mean=%.3f std=%.3f\n', avg, sd);
 greet();            % using a default argument via nargin
 greet('Florian');   % overriding it
 
-%% Try it yourself
-% 1. Write a local function isPrime(n) (add it to the functions at the
-%    bottom of this file) that returns true/false. Test it in a for
-%    loop over 1:20 and print which numbers are prime.
-% 2. Take an if/elseif/else chain that classifies a numeric score into
-%    a letter grade and rewrite it as a switch statement instead.
-% 3. Write a function with TWO optional inputs (using nargin, like
-%    greet() above) — e.g. a function that formats a name with an
-%    optional title and an optional suffix.
-
 %% --- local functions below this point ---
 function f = celsiusToFahrenheit(c)
     % A plain single-output function.

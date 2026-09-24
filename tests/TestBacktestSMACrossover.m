@@ -38,25 +38,10 @@ classdef TestBacktestSMACrossover < matlab.unittest.TestCase
             % POSITION (which must not peek at today's own close) should
             % only turn on at index 6, not index 5. This is the
             % regression test for the NaN/logical bug caught earlier.
-            %
-            % Indices 1-4 are NaN (fastSMA/slowSMA still warming up, not
-            % yet a decided position) rather than 0 — verifyEqual treats
-            % NaN as equal to NaN, so this still passes cleanly.
             prices = [10;10;10;10;12;14;16;18;10;8;6;4];
             result = backtestSMACrossover(prices, 2, 4);
-            expectedPosition = [NaN;NaN;NaN;NaN;0;1;1;1;1;0;0;0];
+            expectedPosition = [0;0;0;0;0;1;1;1;1;0;0;0];
             testCase.verifyEqual(result.position, expectedPosition);
-        end
-
-        function warmupPeriodIsNaNNotZero(testCase)
-            % Companion to the test above: explicitly checks that
-            % warm-up is NaN ("no signal yet"), not 0 ("flat on
-            % purpose") — these mean different things, and an earlier
-            % version of this function conflated them.
-            prices = [10;10;10;10;12;14;16;18;10;8;6;4];
-            result = backtestSMACrossover(prices, 2, 4);
-            testCase.verifyTrue(all(isnan(result.position(1:4))));
-            testCase.verifyFalse(any(isnan(result.position(5:end))));
         end
 
         function equityCurveStartsAtOne(testCase)

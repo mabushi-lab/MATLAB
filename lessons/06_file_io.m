@@ -41,13 +41,3 @@ isfield(result, 'ticker')
 % load('just_T.mat');                        % restores it into the workspace
 % .mat is MATLAB's native binary format — fast, but not human-readable
 % or portable outside MATLAB/Octave/scipy.io.loadmat.
-
-%% Try it yourself
-% 1. Load sample_prices.csv, compute the average AAPL price over the
-%    whole period, and write a NEW csv containing just the Date and
-%    AAPL columns using writetable.
-% 2. Build a struct array of 3 "employee" records (name, salary), save
-%    it to a .mat file with save(), then clear the workspace and load
-%    it back with load().
-% 3. Run summary(T) on the price table and note (in a comment) what
-%    MSFT's maximum price was over the period.

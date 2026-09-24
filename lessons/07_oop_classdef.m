@@ -40,16 +40,3 @@ acc.summary                  % also works without () if no args, but () is clear
 % the plain analysis functions (computeReturns, sharpeRatio, ...) into
 % one object you construct once and then call methods on — the same
 % shape as BankAccount, just doing portfolio math instead of banking.
-
-%% Try it yourself
-% 1. Copy BankAccount.m to a new class (e.g. MyBankAccount.m — remember
-%    the filename must match the classdef name) and add a
-%    transferTo(obj, other, amount) method that withdraws from one
-%    account and deposits into another. Careful: since this is a handle
-%    class, think about whether `other` inside the method already
-%    refers to the real second account or a copy.
-% 2. Make a VALUE-class version (remove `< handle`) and demonstrate that
-%    `acc2 = acc; acc2.deposit(50);` no longer changes acc — contrast
-%    this with the handle-class behavior shown above.
-% 3. Add an InterestRate property and an applyInterest() method that
-%    grows the balance by that rate when called.

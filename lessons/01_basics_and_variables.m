@@ -53,11 +53,3 @@ on their own lines.
 % workspace per function call). There's no implicit global state between
 % functions the way a Python module's top level can leak variables —
 % each function only sees what you pass in.
-
-%% Try it yourself
-% 1. Create a variable `temperature` = 21.5 and a logical variable
-%    `isRaining` = false (both with semicolons, so nothing prints).
-%    Then use class() on each to confirm their types.
-% 2. Build a struct `city` with fields name, population, and country,
-%    and display it with disp().
-% 3. Predict the class of `5 == 5.0` before running it — then check.
